@@ -10,32 +10,41 @@
     .walled-dlp-ai-response * {
       color: #16803c !important;
     }
+
+    .walled-dlp-ai-response [data-d-stream-run] {
+      color: #16803c !important;
+      --d-stream-ink: #16803c !important;
+    }
   `;
 
   (document.head || document.documentElement).appendChild(style);
 
   function applyResponseColor() {
-    const selectors = [
-      // ChatGPT
-      '[data-message-author-role="assistant"]',
-      '[data-testid^="conversation-turn-"] [data-message-author-role="assistant"]',
+    const selectors = window.WALLED_DLP_SITE?.responseSelectors || [];
 
-      // Perplexity
-      'main .prose',
-      'main [data-testid*="answer"]',
-      'main [class*="answer"]'
-    ];
-
-    selectors.forEach(selector => {
-      document.querySelectorAll(selector).forEach(element => {
-        if (!element.classList.contains("walled-dlp-ai-response")) {
+    for (const selector of selectors) {
+      try {
+        document.querySelectorAll(selector).forEach(element => {
           element.classList.add("walled-dlp-ai-response");
-        }
-      });
-    });
+        });
+      } catch (error) {
+        console.warn("[Walled DLP] Invalid response selector:", selector);
+      }
+    }
   }
 
-  const observer = new MutationObserver(applyResponseColor);
+  let scheduled = false;
+
+  const observer = new MutationObserver(() => {
+    if (scheduled) return;
+
+    scheduled = true;
+
+    requestAnimationFrame(() => {
+      scheduled = false;
+      applyResponseColor();
+    });
+  });
 
   observer.observe(document.documentElement, {
     childList: true,
