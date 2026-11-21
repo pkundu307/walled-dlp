@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Walled DLP</title>
+  <style>
+    body { font: 13px Segoe UI, sans-serif; width: 300px; padding: 12px; }
+    input { box-sizing: border-box; width: 100%; padding: 7px; margin: 8px 0; }
+    button { padding: 7px 12px; }
+    #status { margin-top: 8px; color: #555; }
+  </style>
+</head>
+<body>
+  <strong>Walled DLP connection</strong>
+  <p>Paste the token from %LOCALAPPDATA%\WalledDLP\token.txt</p>
+  <input id="token" type="password" placeholder="Local API token">
+  <button id="save">Save token</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

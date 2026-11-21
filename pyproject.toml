@@ -1,0 +1,5 @@
+[project]
+name = "walled-dlp"
+version = "0.1.0"
+description = "Local desktop DLP monitor for ChatGPT and Perplexity"
+requires-python = ">=3.12"

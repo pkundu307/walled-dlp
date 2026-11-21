@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Walled DLP",
+  "version": "0.1.0",
+  "description": "Inspect ChatGPT and Perplexity prompts and uploads for WALLED_SENSITIVE.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://www.perplexity.ai/*",
+    "http://127.0.0.1:8765/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*"
+      ],
+      "js": [
+        "content/common.js",
+        "sites/chatgpt.js",
+        "content/prompt_guard.js",
+        "content/file_guard.js",
+        "content/response_style.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.perplexity.ai/*"
+      ],
+      "js": [
+        "content/common.js",
+        "sites/perplexity.js",
+        "content/prompt_guard.js",
+        "content/file_guard.js",
+        "content/response_style.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

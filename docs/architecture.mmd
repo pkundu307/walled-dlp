@@ -1,0 +1,11 @@
+flowchart TD
+  A[ChatGPT / Perplexity page] --> B[MV3 content scripts]
+  B --> C[Extension service worker]
+  C --> D[Local FastAPI 127.0.0.1]
+  D --> E[Text / PDF / Image scanner]
+  E -->|Marker found| F[Decision queue]
+  F --> G[Native Tkinter dialog]
+  G -->|Continue| H[Replay browser action]
+  G -->|Cancel| I[Block browser action]
+  E -->|No marker| H
+  B --> J[MutationObserver response recoloring]
