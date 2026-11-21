@@ -1,3 +1,4 @@
+# app/main.py
 import threading
 import uvicorn
 import tkinter as tk

@@ -1,3 +1,4 @@
+# app/config.py
 from pathlib import Path
 import secrets
 

@@ -285,3 +285,9 @@ walled-dlp/
 
 **Tesseract missing:** Install Tesseract, verify `tesseract --version`, configure `pytesseract.pytesseract.tesseract_cmd` if needed, then restart the app.
 
+## Screenshots
+
+| Text file inspection | PDF inspection | Image OCR inspection |
+|---|---|---|
+| ![Text check](screenshots/txt check.png) | ![PDF check](screenshots/pdf check.png) | ![Image check](screenshots/image check.png) |
+
